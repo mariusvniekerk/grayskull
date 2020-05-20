@@ -6,6 +6,7 @@ import sys
 import pytest
 
 from grayskull.pypi import PyPi
+from grayskull.pypi.pypi import PyVer
 
 
 @pytest.fixture
@@ -529,3 +530,13 @@ def test_platform_system_selector():
         PyPi._parse_extra_metadata_to_selector("platform_system", "!=", "Windows")
         == "not win"
     )
+
+
+def test_get_py_version_available_corner_case_op_equal():
+    assert PyPi._get_py_version_available([("=", "3", "5")]) == {
+        PyVer(2, 7): False,
+        PyVer(3, 5): True,
+        PyVer(3, 6): False,
+        PyVer(3, 7): False,
+        PyVer(3, 8): False,
+    }
