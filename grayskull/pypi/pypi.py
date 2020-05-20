@@ -1001,6 +1001,8 @@ class PyPi(AbstractRecipeModel):
             for sup_py, is_enabled in py_ver_enabled.items():
                 if is_enabled is False:
                     continue
+                if op == "=":
+                    op = "=="
                 py_ver_enabled[sup_py] = eval(
                     f"sup_py {op} PyVer(int({major}), int({minor}))"
                 )
