@@ -17,6 +17,10 @@ SoundFile:
 aiohttp_cors:
   conda_forge: aiohttp-cors
   import_name: aiohttp_cors
+  
+apache-airflow:
+  conda_forge: airflow
+  import_name: airflow
 
 backtrace:
   conda_forge: python-backtrace
